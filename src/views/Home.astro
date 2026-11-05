@@ -51,7 +51,7 @@ const gallery = [
         <h2>{t(lang, 'home.featured.title')}</h2>
         <a class="link-strong" href={href(lang, 'species')}>{t(lang, 'home.featured.all')} →</a>
       </div>
-      <div class="grid trees">
+      <div class="swipe trees">
         {featured.map((species) => <SpeciesCard species={species} lang={lang} />)}
       </div>
     </div>
@@ -102,7 +102,7 @@ const gallery = [
         <h2>{t(lang, 'home.gallery.title')}</h2>
         <p class="gallery-sub">{t(lang, 'home.gallery.body')}</p>
       </div>
-      <div class="gallery">
+      <div class="swipe gallery">
         {gallery.map((g) => <img src={url(`photos/${g.src}`)} alt={g.alt} loading="lazy" decoding="async" />)}
       </div>
     </div>
@@ -210,8 +210,15 @@ const gallery = [
     padding-block: clamp(2rem, 5vw, 3.25rem) 0;
   }
 
-  .trees {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  /* On phones the service cards show their summary only; the full list is on Servicios. */
+  @media (max-width: 47.99rem) {
+    .services :global(ul) {
+      display: none;
+    }
+
+    .services :global(p:last-child) {
+      margin-bottom: 0;
+    }
   }
 
   .services {
@@ -234,12 +241,6 @@ const gallery = [
   .gallery-sub {
     margin: 0;
     color: var(--color-muted);
-  }
-
-  .gallery {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
   }
 
   .gallery img {

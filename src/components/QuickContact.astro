@@ -1,0 +1,54 @@
+---
+// Floating WhatsApp quote button, shown on phones only.
+import { whatsappLink } from '../data/site';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<a class="quick-contact" href={whatsappLink(t(lang, 'services.ctaMessage'))} rel="noopener">
+  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+    <path
+      d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linejoin="round"></path>
+  </svg>
+  {t(lang, 'quick.cta')}
+</a>
+
+<style>
+  .quick-contact {
+    position: fixed;
+    right: 1rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 10px 30px -10px oklch(0.2 0.03 150 / 0.6);
+  }
+
+  .quick-contact:hover {
+    color: var(--color-on-primary);
+    background: var(--color-primary-strong);
+  }
+
+  @media (min-width: 48rem) {
+    .quick-contact {
+      display: none;
+    }
+  }
+</style>

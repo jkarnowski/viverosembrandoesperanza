@@ -132,8 +132,44 @@ img {
   margin-bottom: 0.5rem;
 }
 
+/* Standalone text links: padded to a comfortable 44px tap height on phones. */
 .link-strong {
+  display: inline-block;
+  padding-block: 0.6rem;
   font-weight: 600;
+}
+
+/* Horizontal swipe row on phones; a normal grid from tablet width up. */
+.swipe {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 78%;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  margin-inline: calc(-1 * var(--gutter));
+  padding: 0.25rem var(--gutter) 1.75rem;
+  scrollbar-width: none;
+}
+
+.swipe::-webkit-scrollbar {
+  display: none;
+}
+
+.swipe > * {
+  scroll-snap-align: start;
+}
+
+@media (min-width: 48rem) {
+  .swipe {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: visible;
+    margin-inline: 0;
+    padding: 0;
+  }
 }
 
 .button {

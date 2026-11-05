@@ -137,7 +137,13 @@ const facts = [
 
   .photo :global(.art) {
     border-radius: var(--radius-lg);
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 4 / 3;
+  }
+
+  @media (min-width: 56rem) {
+    .photo :global(.art) {
+      aspect-ratio: 4 / 5;
+    }
   }
 
   figcaption {

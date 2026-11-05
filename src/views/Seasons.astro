@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import StockBadge from '../components/StockBadge.astro';
+import MonthStrip from '../components/MonthStrip.astro';
 import { href, routePath, t, type Lang } from '../i18n/ui';
 import { getSpecies, overallStock } from '../lib/species';
 
@@ -41,6 +42,20 @@ const phases = [
           ))
         }
       </div>
+
+      <ul class="season-list">
+        {
+          species.map((s) => (
+            <li class="card">
+              <div class="season-head">
+                <a href={href(lang, 'species', s.id)}>{s.data.name[lang]}</a>
+                <StockBadge stock={overallStock(s)} lang={lang} />
+              </div>
+              <MonthStrip months={s.data.months} lang={lang} />
+            </li>
+          ))
+        }
+      </ul>
 
       <div class="table-wrap card">
         <table>
@@ -107,9 +122,51 @@ const phases = [
     color: var(--color-muted);
   }
 
+  /* Phones: one card per species with its month strip. Tablet and up: the full table. */
+  .season-list {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .season-list li {
+    padding: 1rem;
+  }
+
+  .season-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .season-head a {
+    display: inline-block;
+    padding-block: 0.4rem;
+    color: var(--color-ink);
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+  }
+
   .table-wrap {
+    display: none;
+    max-width: 100%;
     overflow-x: auto;
     padding: 1rem;
+  }
+
+  @media (min-width: 48rem) {
+    .season-list {
+      display: none;
+    }
+
+    .table-wrap {
+      display: block;
+    }
   }
 
   table {
