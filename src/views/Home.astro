@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import SpeciesCard from '../components/SpeciesCard.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { services } from '../data/services';
 import { site, whatsappLink } from '../data/site';
 import { href, routePath, t, type Lang } from '../i18n/ui';
 import { getSpecies } from '../lib/species';
@@ -28,6 +30,27 @@ const reasons = [
       <div class="button-row">
         <a class="button" href={href(lang, 'species')}>{t(lang, 'home.hero.cta')}</a>
         <a class="button button--ghost" href={href(lang, 'contact')}>{t(lang, 'home.hero.cta2')}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>{t(lang, 'home.services.title')}</h2>
+        <a href={href(lang, 'services')}>{t(lang, 'home.services.more')} →</a>
+      </div>
+      <div class="grid services">
+        {
+          services.map((s) => (
+            <ServiceCard
+              title={t(lang, s.title)}
+              body={t(lang, s.body)}
+              points={t(lang, s.points)}
+              icon={s.icon}
+            />
+          ))
+        }
       </div>
     </div>
   </section>
@@ -66,12 +89,12 @@ const reasons = [
   <section class="section section--alt">
     <div class="container visit">
       <div>
-        <h2>{t(lang, 'home.visit.title')}</h2>
-        <p class="lead">{t(lang, 'home.visit.body')}</p>
+        <h2>{t(lang, 'home.quote.title')}</h2>
+        <p class="lead">{t(lang, 'home.quote.body')}</p>
       </div>
       <div class="button-row">
-        <a class="button" href={whatsappLink(t(lang, 'contact.whatsappMessage'))} rel="noopener">
-          {t(lang, 'contact.whatsapp')}
+        <a class="button" href={whatsappLink(t(lang, 'services.ctaMessage'))} rel="noopener">
+          {t(lang, 'services.cta')}
         </a>
         <a class="button button--ghost" href={`mailto:${site.email}`}>{site.email}</a>
       </div>
@@ -103,6 +126,10 @@ const reasons = [
   .reasons p {
     margin: 0;
     color: var(--color-muted);
+  }
+
+  .services {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   }
 
   .section-head {

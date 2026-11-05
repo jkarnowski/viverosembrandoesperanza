@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { services } from '../data/services';
+import { whatsappLink } from '../data/site';
+import { href, routePath, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<Base
+  lang={lang}
+  title={t(lang, 'services.title')}
+  description={t(lang, 'services.intro')}
+  route="services"
+  alternates={{ es: routePath('es', 'services'), en: routePath('en', 'services') }}
+>
+  <section class="section">
+    <div class="container">
+      <h1>{t(lang, 'services.title')}</h1>
+      <p class="lead">{t(lang, 'services.intro')}</p>
+
+      <div class="grid services">
+        {
+          services.map((s) => (
+            <ServiceCard
+              title={t(lang, s.title)}
+              body={t(lang, s.body)}
+              points={t(lang, s.points)}
+              icon={s.icon}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container approach">
+      <div>
+        <h2>{t(lang, 'services.approach.title')}</h2>
+        <p class="lead">{t(lang, 'services.approach.body')}</p>
+      </div>
+      <div class="min-order card">
+        <p class="eyebrow">{t(lang, 'services.minOrder')}</p>
+        <p class="value">{t(lang, 'services.minOrderValue')}</p>
+        <div class="button-row">
+          <a class="button" href={whatsappLink(t(lang, 'services.ctaMessage'))} rel="noopener">
+            {t(lang, 'services.cta')}
+          </a>
+          <a class="button button--ghost" href={href(lang, 'species')}>{t(lang, 'home.hero.cta')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .services {
+    margin-top: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  }
+
+  .approach {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (min-width: 56rem) {
+    .approach {
+      grid-template-columns: 3fr 2fr;
+    }
+  }
+
+  .approach .lead {
+    margin: 0;
+  }
+
+  .value {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+</style>

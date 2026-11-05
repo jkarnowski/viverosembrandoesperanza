@@ -1,0 +1,68 @@
+---
+interface Props {
+  title: string;
+  body: string;
+  /** Bullet points, separated by "|" in the interface strings. */
+  points?: string;
+  icon: string;
+}
+
+const { title, body, points, icon } = Astro.props;
+---
+
+<article class="service">
+  <svg viewBox="0 0 24 24" width="36" height="36" aria-hidden="true" focusable="false">
+    <path d={icon} fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+  </svg>
+  <h3>{title}</h3>
+  <p>{body}</p>
+  {
+    points && (
+      <ul>
+        {points.split('|').map((point) => <li>{point}</li>)}
+      </ul>
+    )
+  }
+</article>
+
+<style>
+  .service {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+  }
+
+  svg {
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: var(--color-muted);
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.45rem;
+  }
+
+  li::before {
+    content: '';
+    position: absolute;
+    left: 0.2rem;
+    top: 0.45em;
+    width: 0.7rem;
+    height: 0.4rem;
+    border-left: 2px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+    transform: rotate(-45deg);
+  }
+</style>

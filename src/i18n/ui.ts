@@ -18,6 +18,7 @@ export const enabledLangs: readonly Lang[] = ['es'];
 export const routes = {
   home: { es: '', en: '' },
   species: { es: 'especies', en: 'species' },
+  services: { es: 'servicios', en: 'services' },
   about: { es: 'nosotros', en: 'about' },
   contact: { es: 'contacto', en: 'contact' },
 } as const;
@@ -29,9 +30,10 @@ export const ui = {
     'site.title': 'Vivero Sembrando Esperanza',
     'site.tagline': 'Vivero de árboles y arbustos nativos de Chile',
     'site.description':
-      'Vivero de especies nativas de Chile: quillay, peumo, maitén, araucaria, notro y más. Plantas para jardines, reforestación y restauración ecológica.',
+      'Vivero de especies nativas de Chile: quillay, peumo, maitén, araucaria, notro y más. Venta de plantines desde 500 unidades y mantención forestal durante el primer año.',
     'nav.home': 'Inicio',
     'nav.species': 'Especies',
+    'nav.services': 'Servicios',
     'nav.about': 'Nosotros',
     'nav.contact': 'Contacto',
     'nav.menu': 'Menú',
@@ -40,7 +42,7 @@ export const ui = {
     'home.hero.body':
       'Producimos árboles nativos de Chile para proyectos de reforestación, jardines y colegios.',
     'home.hero.cta': 'Ver especies',
-    'home.hero.cta2': 'Escríbenos',
+    'home.hero.cta2': 'Solicitar cotización',
     'home.why.title': '¿Por qué plantar nativo?',
     'home.why.water.title': 'Menos riego',
     'home.why.water.body':
@@ -53,12 +55,14 @@ export const ui = {
       'Protegen el suelo de la erosión y ayudan a recuperar quebradas, laderas y riberas.',
     'home.featured.title': 'Algunas de nuestras especies',
     'home.featured.all': 'Ver todas las especies',
-    'home.visit.title': 'Visítanos en el vivero',
-    'home.visit.body':
-      'Te asesoramos para elegir la especie adecuada según tu espacio, suelo y clima.',
+    'home.services.title': 'Qué ofrecemos',
+    'home.services.more': 'Ver servicios',
+    'home.quote.title': '¿Tienes un proyecto de reforestación?',
+    'home.quote.body':
+      'Cuéntanos qué especies y cuántos plantines necesitas. El pedido mínimo es de 500 plantines.',
     'species.title': 'Especies',
     'species.intro':
-      'Árboles y arbustos nativos que producimos en el vivero. Consulta disponibilidad y tamaños por WhatsApp o correo.',
+      'Árboles nativos que producimos en el vivero. Vendemos plantines en pedidos desde 500 unidades, y puedes combinar especies.',
     'species.filter.label': 'Filtrar por clima',
     'species.filter.all': 'Todas',
     'species.count': 'especies',
@@ -72,8 +76,8 @@ export const ui = {
     'species.range': 'Distribución natural',
     'species.conservation': 'Estado de conservación',
     'species.uses': 'Usos',
-    'species.ask': 'Consultar disponibilidad',
-    'species.askMessage': 'Hola, quisiera consultar por disponibilidad de',
+    'species.ask': 'Cotizar plantines',
+    'species.askMessage': 'Hola, quisiera cotizar plantines (pedido mínimo 500) de',
     'species.back': 'Volver a especies',
     'species.unavailable': 'Sin stock por ahora',
     'growth.slow': 'Lento',
@@ -92,11 +96,29 @@ export const ui = {
     'conservation.EN': 'En peligro',
     'about.title': 'Nosotros',
     'about.team': 'Equipo',
+    'services.title': 'Servicios',
+    'services.intro':
+      'Producimos plantines de árboles nativos para proyectos de reforestación y te acompañamos durante el primer año para que tus árboles crezcan sanos.',
+    'services.seedlings.title': 'Venta de plantines',
+    'services.seedlings.body':
+      'Plantines de especies nativas producidos en nuestro vivero, listos para plantar.',
+    'services.seedlings.points': 'Pedido mínimo de 500 plantines|Puedes combinar distintas especies en un mismo pedido|Te ayudamos a elegir las especies según el clima de tu terreno',
+    'services.care.title': 'Mantención forestal por un año',
+    'services.care.body':
+      'Cuidamos los árboles durante su primer año en terreno, la etapa más crítica, para aumentar las probabilidades de que crezcan sanos.',
+    'services.care.points': 'Seguimiento durante 12 meses después de la plantación|Visitas en terreno de nuestro equipo|Tecnología de monitoreo para detectar problemas a tiempo',
+    'services.approach.title': 'Personas y tecnología',
+    'services.approach.body':
+      'Combinamos el conocimiento y el cuidado de nuestro equipo en terreno con herramientas tecnológicas de monitoreo. Así detectamos a tiempo lo que cada árbol necesita.',
+    'services.minOrder': 'Pedido mínimo',
+    'services.minOrderValue': '500 plantines',
+    'services.cta': 'Solicitar cotización',
+    'services.ctaMessage': 'Hola, quisiera cotizar plantines y el servicio de mantención forestal.',
     'contact.title': 'Contacto',
     'contact.intro':
-      'Escríbenos para consultar disponibilidad, precios, pedidos para proyectos o para coordinar una visita.',
+      'Escríbenos para cotizar plantines (pedido mínimo de 500 unidades) o el servicio de mantención forestal durante el primer año.',
     'contact.whatsapp': 'Escríbenos por WhatsApp',
-    'contact.whatsappMessage': 'Hola, quisiera hacer una consulta sobre el vivero.',
+    'contact.whatsappMessage': 'Hola, quisiera cotizar plantines nativos.',
     'contact.email': 'Correo',
     'contact.phone': 'Teléfono',
     'contact.address': 'Dirección',
@@ -111,9 +133,10 @@ export const ui = {
     'site.title': 'Vivero Sembrando Esperanza',
     'site.tagline': 'Native tree and shrub nursery in Chile',
     'site.description':
-      'Nursery growing native Chilean species: quillay, peumo, maitén, araucaria, notro and more. Plants for gardens, reforestation and ecological restoration.',
+      'Nursery growing native Chilean species: quillay, peumo, maitén, araucaria, notro and more. Seedlings sold from 500 units, plus forest care during the first year.',
     'nav.home': 'Home',
     'nav.species': 'Species',
+    'nav.services': 'Services',
     'nav.about': 'About',
     'nav.contact': 'Contact',
     'nav.menu': 'Menu',
@@ -122,7 +145,7 @@ export const ui = {
     'home.hero.body':
       'We grow native Chilean trees and shrubs for gardens, farms, schools and restoration projects.',
     'home.hero.cta': 'Browse species',
-    'home.hero.cta2': 'Get in touch',
+    'home.hero.cta2': 'Request a quote',
     'home.why.title': 'Why plant native?',
     'home.why.water.title': 'Less watering',
     'home.why.water.body':
@@ -135,12 +158,14 @@ export const ui = {
       'They protect soil from erosion and help restore ravines, hillsides and riverbanks.',
     'home.featured.title': 'Some of our species',
     'home.featured.all': 'See all species',
-    'home.visit.title': 'Visit the nursery',
-    'home.visit.body':
-      'We help you choose the right species for your space, soil and climate.',
+    'home.services.title': 'What we offer',
+    'home.services.more': 'See services',
+    'home.quote.title': 'Planning a reforestation project?',
+    'home.quote.body':
+      'Tell us which species and how many seedlings you need. The minimum order is 500 seedlings.',
     'species.title': 'Species',
     'species.intro':
-      'Native trees and shrubs we grow at the nursery. Ask about availability and sizes by WhatsApp or email.',
+      'Native trees we grow at the nursery. We sell seedlings in orders of 500 or more, and you can mix species.',
     'species.filter.label': 'Filter by climate',
     'species.filter.all': 'All',
     'species.count': 'species',
@@ -154,8 +179,8 @@ export const ui = {
     'species.range': 'Native range',
     'species.conservation': 'Conservation status',
     'species.uses': 'Uses',
-    'species.ask': 'Ask about availability',
-    'species.askMessage': 'Hello, I would like to ask about availability of',
+    'species.ask': 'Request a quote',
+    'species.askMessage': 'Hello, I would like a quote for seedlings (minimum order 500) of',
     'species.back': 'Back to species',
     'species.unavailable': 'Out of stock for now',
     'growth.slow': 'Slow',
@@ -174,11 +199,28 @@ export const ui = {
     'conservation.EN': 'Endangered',
     'about.title': 'About us',
     'about.team': 'Team',
+    'services.title': 'Services',
+    'services.intro':
+      'We grow native tree seedlings for reforestation projects and stay with you through the first year so your trees grow healthy.',
+    'services.seedlings.title': 'Seedling sales',
+    'services.seedlings.body': 'Native species seedlings grown at our nursery, ready to plant.',
+    'services.seedlings.points': 'Minimum order of 500 seedlings|Mix different species in one order|We help you choose species for your site\'s climate',
+    'services.care.title': 'One year of forest care',
+    'services.care.body':
+      'We look after the trees during their first year in the ground, the most critical stage, to improve their chances of healthy growth.',
+    'services.care.points': '12 months of follow-up after planting|Site visits from our team|Monitoring technology to catch problems early',
+    'services.approach.title': 'People and technology',
+    'services.approach.body':
+      'We combine our field team\'s knowledge and care with technology-based monitoring, so we can spot early what each tree needs.',
+    'services.minOrder': 'Minimum order',
+    'services.minOrderValue': '500 seedlings',
+    'services.cta': 'Request a quote',
+    'services.ctaMessage': 'Hello, I would like a quote for seedlings and the forest care service.',
     'contact.title': 'Contact',
     'contact.intro':
-      'Get in touch to ask about availability, prices, orders for projects, or to arrange a visit.',
+      'Get in touch for a quote on seedlings (minimum order 500) or our first-year forest care service.',
     'contact.whatsapp': 'Message us on WhatsApp',
-    'contact.whatsappMessage': 'Hello, I have a question about the nursery.',
+    'contact.whatsappMessage': 'Hello, I would like a quote for native seedlings.',
     'contact.email': 'Email',
     'contact.phone': 'Phone',
     'contact.address': 'Address',
