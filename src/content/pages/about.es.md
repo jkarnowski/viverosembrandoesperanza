@@ -10,7 +10,6 @@ description: Conoce Vivero Sembrando Esperanza, un vivero dedicado a la producci
 ## Lo que hacemos
 
 - Producimos árboles y arbustos nativos de la zona central y sur de Chile.
-- Asesoramos a personas, colegios, municipios y empresas para elegir las especies adecuadas a cada lugar.
 - Abastecemos proyectos de reforestación y restauración ecológica.
 
 ## Por qué lo hacemos
