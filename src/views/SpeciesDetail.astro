@@ -20,6 +20,7 @@ const facts = [
   { label: t(lang, 'species.growth'), value: t(lang, `growth.${data.growth}`) },
   { label: t(lang, 'species.sun'), value: t(lang, `sun.${data.sun}`) },
   { label: t(lang, 'species.water'), value: t(lang, `water.${data.water}`) },
+  { label: t(lang, 'species.climate'), value: data.climate.map((c) => t(lang, `climate.${c}`)).join(', ') },
   { label: t(lang, 'species.range'), value: data.range[lang] },
   ...(data.conservation
     ? [{ label: t(lang, 'species.conservation'), value: t(lang, `conservation.${data.conservation}`) }]

@@ -6,6 +6,7 @@ height: [30, 40]
 growth: slow
 sun: full
 water: medium
+climate: [cold]
 range: { es: Biobío y La Araucanía (Andes y cordillera de Nahuelbuta), en: Biobío and La Araucanía (Andes and Nahuelbuta range) }
 conservation: EN
 summary:

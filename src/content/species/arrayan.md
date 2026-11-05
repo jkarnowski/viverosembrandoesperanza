@@ -6,6 +6,7 @@ height: [10, 15]
 growth: medium
 sun: partial
 water: high
+climate: [temperate]
 range: { es: Valparaíso a Aysén, en: Valparaíso to Aysén }
 summary:
   es: Árbol de corteza color canela, flores blancas y frutos comestibles.

@@ -6,6 +6,7 @@ height: [8, 15]
 growth: medium
 sun: partial
 water: medium
+climate: [temperate]
 range: { es: Maule a Aysén, en: Maule to Aysén }
 summary:
   es: Árbol siempreverde de hojas brillantes y frutos comestibles.

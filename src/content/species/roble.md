@@ -6,6 +6,7 @@ height: [25, 35]
 growth: fast
 sun: full
 water: medium
+climate: [temperate]
 range: { es: Valparaíso a Los Lagos, en: Valparaíso to Los Lagos }
 summary:
   es: Gran árbol caducifolio de crecimiento rápido y colores de otoño.

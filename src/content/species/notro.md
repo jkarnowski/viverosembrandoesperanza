@@ -6,6 +6,7 @@ height: [5, 10]
 growth: fast
 sun: full
 water: medium
+climate: [temperate, cold]
 range: { es: Maule a Magallanes, en: Maule to Magallanes }
 summary:
   es: Árbol de flores rojo intenso que atraen al picaflor.

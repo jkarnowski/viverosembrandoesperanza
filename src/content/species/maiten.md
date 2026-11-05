@@ -6,6 +6,7 @@ height: [10, 15]
 growth: medium
 sun: full
 water: low
+climate: [mediterranean, temperate]
 range: { es: Atacama a Aysén, en: Atacama to Aysén }
 summary:
   es: Árbol elegante de ramas colgantes, muy adaptable.

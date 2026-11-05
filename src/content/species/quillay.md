@@ -6,6 +6,7 @@ height: [10, 15]
 growth: medium
 sun: full
 water: low
+climate: [mediterranean]
 range: { es: Coquimbo a La Araucanía, en: Coquimbo to La Araucanía }
 summary:
   es: Árbol siempreverde del bosque esclerófilo, muy resistente a la sequía.

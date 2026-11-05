@@ -12,7 +12,7 @@ const { species, lang } = Astro.props;
 const { data } = species;
 ---
 
-<article class="species-card" data-water={data.water}>
+<article class="species-card" data-climate={data.climate.join(' ')}>
   <a href={href(lang, 'species', species.id)}>
     <SpeciesArt color={data.color} label={data.name[lang]} />
     <div class="body">

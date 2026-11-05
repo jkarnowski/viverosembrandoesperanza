@@ -15,6 +15,8 @@ const species = defineCollection({
     growth: z.enum(['slow', 'medium', 'fast']),
     sun: z.enum(['full', 'partial', 'shade']),
     water: z.enum(['low', 'medium', 'high']),
+    /** Climates the species does well in (used by the catalog filter). */
+    climate: z.array(z.enum(['mediterranean', 'temperate', 'cold'])).min(1),
     range: localized,
     /** IUCN-style category, only for threatened species. */
     conservation: z.enum(['VU', 'EN']).optional(),

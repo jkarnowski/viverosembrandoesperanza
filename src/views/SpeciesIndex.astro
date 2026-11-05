@@ -10,7 +10,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const species = await getSpecies(lang);
-const filters = ['low', 'medium', 'high'] as const;
+const filters = ['mediterranean', 'temperate', 'cold'] as const;
 ---
 
 <Base
@@ -31,7 +31,7 @@ const filters = ['low', 'medium', 'high'] as const;
         {
           filters.map((f) => (
             <button type="button" data-filter={f} aria-pressed="false">
-              {t(lang, `water.${f}`)}
+              {t(lang, `climate.${f}`)}
             </button>
           ))
         }
@@ -108,7 +108,8 @@ const filters = ['low', 'medium', 'high'] as const;
         for (const b of buttons) b.setAttribute('aria-pressed', String(b === button));
         let shown = 0;
         for (const card of cards) {
-          const match = value === 'all' || card.dataset.water === value;
+          const climates = (card.dataset.climate ?? '').split(' ');
+          const match = value === 'all' || (value !== undefined && climates.includes(value));
           card.hidden = !match;
           if (match) shown++;
         }

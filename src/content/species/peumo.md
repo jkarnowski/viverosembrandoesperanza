@@ -6,6 +6,7 @@ height: [10, 20]
 growth: slow
 sun: partial
 water: medium
+climate: [mediterranean]
 range: { es: Coquimbo a La Araucanía, en: Coquimbo to La Araucanía }
 summary:
   es: Árbol siempreverde aromático de quebradas y laderas de sombra.
