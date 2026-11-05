@@ -13,8 +13,7 @@ export const team: TeamMember[] = [
   {
     name: 'Pablo Pérez',
     role: 'Cofundador y susurrador de árboles en jefe',
-    // TODO: replace with Pablo's bio.
-    bio: 'Biografía pendiente.',
+    bio: 'Pablo viene de una familia de guardianes de árboles. Nació y creció en Santiago, pero sus raíces están en La Araucanía, en el campo familiar a las afueras de Lautaro, donde su padre plantó más de mil árboles. Allí, siguiendo sus pasos, aprendió todo lo que un árbol regala: una tierra más sana, una sombra fresca para refugiarse del sol de verano y una belleza que despierta asombro. Hoy siembra para que otros también puedan vivirlo.',
     photo: 'pablo-perez.jpg',
   },
   {
