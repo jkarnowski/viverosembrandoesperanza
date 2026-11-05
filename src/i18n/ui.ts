@@ -29,7 +29,7 @@ export const ui = {
     'site.title': 'Vivero Sembrando Esperanza',
     'site.tagline': 'Vivero de árboles y arbustos nativos de Chile',
     'site.description':
-      'Vivero de especies nativas de Chile: quillay, peumo, boldo, maitén y más. Plantas para jardines, reforestación y restauración ecológica.',
+      'Vivero de especies nativas de Chile: quillay, peumo, maitén, araucaria, notro y más. Plantas para jardines, reforestación y restauración ecológica.',
     'nav.home': 'Inicio',
     'nav.species': 'Especies',
     'nav.about': 'Nosotros',
@@ -106,7 +106,7 @@ export const ui = {
     'site.title': 'Vivero Sembrando Esperanza',
     'site.tagline': 'Native tree and shrub nursery in Chile',
     'site.description':
-      'Nursery growing native Chilean species: quillay, peumo, boldo, maitén and more. Plants for gardens, reforestation and ecological restoration.',
+      'Nursery growing native Chilean species: quillay, peumo, maitén, araucaria, notro and more. Plants for gardens, reforestation and ecological restoration.',
     'nav.home': 'Home',
     'nav.species': 'Species',
     'nav.about': 'About',

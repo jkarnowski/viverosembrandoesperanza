@@ -17,5 +17,6 @@ description:
 uses:
   es: Ejemplar emblemático para parques y jardines amplios, proyectos de conservación.
   en: Landmark tree for parks and large gardens, conservation projects.
+featured: true
 color: '#4a6b4f'
 ---
