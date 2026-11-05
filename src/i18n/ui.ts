@@ -38,7 +38,7 @@ export const ui = {
     'nav.skip': 'Saltar al contenido',
     'home.hero.title': 'Sembramos los árboles que siempre fueron de aquí',
     'home.hero.body':
-      'Producimos árboles y arbustos nativos de Chile para jardines, campos, colegios y proyectos de restauración.',
+      'Producimos árboles nativos de Chile para proyectos de reforestación, jardines y colegios.',
     'home.hero.cta': 'Ver especies',
     'home.hero.cta2': 'Escríbenos',
     'home.why.title': '¿Por qué plantar nativo?',
