@@ -1,13 +1,22 @@
 ---
-name: { es: Roble, en: Roble (southern beech) }
+name: { es: Roble pellín, en: Roble pellín (southern beech) }
 scientificName: Nothofagus obliqua
 family: Nothofagaceae
-height: [25, 35]
+height: [30, 40]
 growth: fast
 sun: full
 water: medium
-climate: [temperate]
+climate: [temperate, mediterranean]
 range: { es: Valparaíso a Los Lagos, en: Valparaíso to Los Lagos }
+leaf: deciduous
+soil: { es: 'Profundo, tolera arcilla', en: 'Deep, tolerates clay' }
+frost: { es: 'Resistente (-15 °C)', en: 'Hardy (-15 °C)' }
+photo: roble-arbol.jpg
+photoCredit: 'Foto: Wikimedia Commons (dominio público)'
+formats:
+  - { name: 'Bolsa 1 L', stock: disponible, units: 600 }
+  - { name: 'Maceta 10 L', stock: pocas, units: 25 }
+months: [5, 6, 7, 8]
 summary:
   es: Gran árbol caducifolio de crecimiento rápido y colores de otoño.
   en: Large, fast-growing deciduous tree with autumn colour.

@@ -1,9 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
 import SpeciesArt from '../components/SpeciesArt.astro';
+import StockBadge from '../components/StockBadge.astro';
+import MonthStrip from '../components/MonthStrip.astro';
 import { whatsappLink } from '../data/site';
 import { href, routePath, t, type Lang } from '../i18n/ui';
-import { formatHeight, type Species } from '../lib/species';
+import { formatHeight, overallStock, type Species } from '../lib/species';
 
 interface Props {
   lang: Lang;
@@ -13,14 +15,18 @@ interface Props {
 const { lang, species } = Astro.props;
 const { data } = species;
 const name = data.name[lang];
+const stock = overallStock(species);
 
 const facts = [
-  { label: t(lang, 'species.family'), value: data.family },
+  { label: t(lang, 'species.leaf'), value: t(lang, `leaf.${data.leaf}`) },
   { label: t(lang, 'species.height'), value: formatHeight(data.height) },
   { label: t(lang, 'species.growth'), value: t(lang, `growth.${data.growth}`) },
   { label: t(lang, 'species.sun'), value: t(lang, `sun.${data.sun}`) },
   { label: t(lang, 'species.water'), value: t(lang, `water.${data.water}`) },
   { label: t(lang, 'species.climate'), value: data.climate.map((c) => t(lang, `climate.${c}`)).join(', ') },
+  { label: t(lang, 'species.soil'), value: data.soil[lang] },
+  { label: t(lang, 'species.frost'), value: data.frost[lang] },
+  { label: t(lang, 'species.family'), value: data.family },
   { label: t(lang, 'species.range'), value: data.range[lang] },
   ...(data.conservation
     ? [{ label: t(lang, 'species.conservation'), value: t(lang, `conservation.${data.conservation}`) }]
@@ -40,16 +46,41 @@ const facts = [
 >
   <article class="section">
     <div class="container">
-      <p><a href={href(lang, 'species')}>← {t(lang, 'species.back')}</a></p>
+      <p><a class="link-strong" href={href(lang, 'species')}>← {t(lang, 'species.back')}</a></p>
       <div class="layout">
-        <SpeciesArt color={data.color} label={name} class="photo" />
+        <figure class="photo">
+          <SpeciesArt color={data.color} label={`${name} (${data.scientificName})`} photo={data.photo} eager />
+          {data.photoCredit && <figcaption>{data.photoCredit}</figcaption>}
+        </figure>
         <div>
-          <h1>{name}</h1>
+          <div class="title-row">
+            <h1>{name}</h1>
+            <StockBadge stock={stock} lang={lang} />
+          </div>
           <p class="sci">{data.scientificName}</p>
           <p class="lead">{data.description[lang]}</p>
 
           <h2>{t(lang, 'species.uses')}</h2>
           <p>{data.uses[lang]}</p>
+
+          <h2>{t(lang, 'species.formats')}</h2>
+          <ul class="formats">
+            {
+              data.formats.map((f) => (
+                <li>
+                  <span class="format-name">{f.name}</span>
+                  {f.units !== undefined && f.stock !== 'agotado' && (
+                    <span class="units">{f.units} {t(lang, 'species.units')}</span>
+                  )}
+                  <StockBadge stock={f.stock} lang={lang} />
+                </li>
+              ))
+            }
+          </ul>
+          <p class="note">{t(lang, 'species.stockNote')}</p>
+
+          <h2>{t(lang, 'species.months')}</h2>
+          <MonthStrip months={data.months} lang={lang} />
 
           <dl class="facts">
             {
@@ -63,7 +94,9 @@ const facts = [
           </dl>
 
           {
-            data.available ? (
+            stock === 'agotado' ? (
+              <p class="unavailable">{t(lang, 'stock.agotado')}</p>
+            ) : (
               <a
                 class="button"
                 href={whatsappLink(`${t(lang, 'species.askMessage')} ${name} (${data.scientificName}).`)}
@@ -71,8 +104,6 @@ const facts = [
               >
                 {t(lang, 'species.ask')}
               </a>
-            ) : (
-              <p class="unavailable">{t(lang, 'species.unavailable')}</p>
             )
           }
         </div>
@@ -94,30 +125,84 @@ const facts = [
       align-items: start;
     }
 
-    .layout :global(.photo) {
+    .photo {
       position: sticky;
       top: 6rem;
     }
   }
 
-  .layout :global(.photo) {
-    border-radius: var(--radius);
-    aspect-ratio: 4 / 3;
+  .photo {
+    margin: 0;
+  }
+
+  .photo :global(.art) {
+    border-radius: var(--radius-lg);
+    aspect-ratio: 4 / 5;
+  }
+
+  figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--color-muted);
+  }
+
+  .title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
   }
 
   h1 {
-    margin-bottom: 0.15rem;
+    margin-bottom: 0;
   }
 
   .sci {
     font-style: italic;
     color: var(--color-muted);
     font-size: 1.15rem;
+    margin-top: 0.25rem;
   }
 
   h2 {
     font-size: 1.3rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .formats {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+  }
+
+  .formats li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    padding: 0.8rem 1.1rem;
+  }
+
+  .formats li + li {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .format-name {
+    font-weight: 600;
+    margin-right: auto;
+  }
+
+  .units {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  .note {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-muted);
   }
 
   .facts {
@@ -126,7 +211,6 @@ const facts = [
     gap: 1px;
     margin: 2rem 0;
     background: var(--color-border);
-    border: 1px solid var(--color-border);
     border-radius: var(--radius);
     overflow: hidden;
   }
@@ -137,9 +221,9 @@ const facts = [
   }
 
   dt {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--color-muted);
   }
@@ -150,6 +234,6 @@ const facts = [
 
   .unavailable {
     font-weight: 600;
-    color: var(--color-accent);
+    color: var(--color-muted);
   }
 </style>

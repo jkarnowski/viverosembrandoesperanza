@@ -4,7 +4,7 @@ import SpeciesCard from '../components/SpeciesCard.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import { services } from '../data/services';
 import { team } from '../data/team';
-import { site, whatsappLink } from '../data/site';
+import { whatsappLink } from '../data/site';
 import { href, routePath, t, url, type Lang } from '../i18n/ui';
 import { getSpecies } from '../lib/species';
 
@@ -14,17 +14,33 @@ interface Props {
 
 const { lang } = Astro.props;
 const featured = (await getSpecies(lang)).filter((s) => s.data.featured).slice(0, 3);
+
+const gallery = [
+  { src: 'invernadero-plantula-rojiza.jpg', alt: t(lang, 'home.gallery.peumo') },
+  { src: 'quillay-plantulas.jpg', alt: t(lang, 'home.gallery.quillay') },
+  { src: 'notro-en-flor.jpg', alt: t(lang, 'home.gallery.notro') },
+];
 ---
 
 <Base lang={lang} alternates={{ es: routePath('es', 'home'), en: routePath('en', 'home') }}>
   <section class="hero">
+    <img
+      class="hero-img"
+      src={url('photos/hero-invernadero.jpg')}
+      alt={t(lang, 'home.hero.alt')}
+      width="1600"
+      height="900"
+      fetchpriority="high"
+    />
     <div class="container hero-inner">
-      <p class="eyebrow">{t(lang, 'site.tagline')}</p>
+      <p class="hero-eyebrow">{t(lang, 'home.hero.eyebrow')}</p>
       <h1>{t(lang, 'home.hero.title')}</h1>
-      <p class="lead">{t(lang, 'home.hero.body')}</p>
+      <p class="hero-body">{t(lang, 'home.hero.body')}</p>
       <div class="button-row">
-        <a class="button" href={href(lang, 'species')}>{t(lang, 'home.hero.cta')}</a>
-        <a class="button button--ghost" href={href(lang, 'contact')}>{t(lang, 'home.hero.cta2')}</a>
+        <a class="button button--light" href={href(lang, 'species')}>{t(lang, 'home.hero.cta')}</a>
+        <a class="button button--outline-light" href={whatsappLink(t(lang, 'home.hero.cta2Message'))} rel="noopener">
+          {t(lang, 'home.hero.cta2')}
+        </a>
       </div>
     </div>
   </section>
@@ -33,7 +49,7 @@ const featured = (await getSpecies(lang)).filter((s) => s.data.featured).slice(0
     <div class="container">
       <div class="section-head">
         <h2>{t(lang, 'home.featured.title')}</h2>
-        <a href={href(lang, 'species')}>{t(lang, 'home.featured.all')} →</a>
+        <a class="link-strong" href={href(lang, 'species')}>{t(lang, 'home.featured.all')} →</a>
       </div>
       <div class="grid trees">
         {featured.map((species) => <SpeciesCard species={species} lang={lang} />)}
@@ -41,11 +57,11 @@ const featured = (await getSpecies(lang)).filter((s) => s.data.featured).slice(0
     </div>
   </section>
 
-  <section class="section section--alt compact">
+  <section class="section compact">
     <div class="container">
       <div class="section-head">
         <h2>{t(lang, 'home.services.title')}</h2>
-        <a href={href(lang, 'services')}>{t(lang, 'home.services.more')} →</a>
+        <a class="link-strong" href={href(lang, 'services')}>{t(lang, 'home.services.more')} →</a>
       </div>
       <div class="grid services">
         {
@@ -75,22 +91,33 @@ const featured = (await getSpecies(lang)).filter((s) => s.data.featured).slice(0
         <p class="eyebrow">{t(lang, 'home.family.eyebrow')}</p>
         <h2>{t(lang, 'home.family.title')}</h2>
         <p class="lead">{t(lang, 'home.family.body')}</p>
-        <a href={href(lang, 'about')}>{t(lang, 'home.family.cta')} →</a>
+        <a class="link-strong" href={href(lang, 'about')}>{t(lang, 'home.family.cta')} →</a>
       </div>
     </div>
   </section>
 
-  <section class="section section--alt compact">
-    <div class="container visit">
-      <div>
-        <h2>{t(lang, 'home.quote.title')}</h2>
-        <p class="lead">{t(lang, 'home.quote.body')}</p>
+  <section class="section compact">
+    <div class="container">
+      <div class="section-head">
+        <h2>{t(lang, 'home.gallery.title')}</h2>
+        <p class="gallery-sub">{t(lang, 'home.gallery.body')}</p>
       </div>
-      <div class="button-row">
+      <div class="gallery">
+        {gallery.map((g) => <img src={url(`photos/${g.src}`)} alt={g.alt} loading="lazy" decoding="async" />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="compact-cta">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>{t(lang, 'home.quote.title')}</h2>
+          <p>{t(lang, 'home.quote.body')}</p>
+        </div>
         <a class="button" href={whatsappLink(t(lang, 'services.ctaMessage'))} rel="noopener">
           {t(lang, 'services.cta')}
         </a>
-        <a class="button button--ghost" href={`mailto:${site.email}`}>{site.email}</a>
       </div>
     </div>
   </section>
@@ -98,31 +125,93 @@ const featured = (await getSpecies(lang)).filter((s) => s.data.featured).slice(0
 
 <style>
   .hero {
-    padding-block: clamp(2.5rem, 7vw, 4.5rem);
-    background:
-      radial-gradient(60rem 30rem at 85% 0%, color-mix(in srgb, var(--color-primary) 16%, transparent), transparent 70%),
-      radial-gradient(40rem 24rem at 0% 100%, color-mix(in srgb, var(--color-accent) 14%, transparent), transparent 70%);
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+    min-height: clamp(26rem, 64vh, 40rem);
+    overflow: hidden;
+    color: var(--color-on-primary);
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, oklch(0.2 0.03 150 / 0.15) 0%, oklch(0.2 0.03 150 / 0.8) 85%);
+  }
+
+  .hero-inner {
+    padding-block: 3rem 3.25rem;
   }
 
   .hero-inner > * {
     max-width: 46rem;
   }
 
-  .hero .lead {
-    margin-bottom: 1.5rem;
+  .hero-eyebrow {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 7vw, 4.5rem);
+    line-height: 1.02;
+    margin-bottom: 1rem;
+  }
+
+  .hero-body {
+    font-size: 1.15rem;
+    opacity: 0.92;
+    margin-bottom: 1.75rem;
+  }
+
+  .button--light {
+    background: var(--color-on-primary);
+    border-color: var(--color-on-primary);
+    color: var(--color-primary);
+  }
+
+  .button--light:hover {
+    background: #fff;
+    border-color: #fff;
+    color: var(--color-primary-strong);
+  }
+
+  .button--outline-light {
+    background: transparent;
+    border-color: color-mix(in srgb, var(--color-on-primary) 70%, transparent);
+    color: var(--color-on-primary);
+  }
+
+  .button--outline-light:hover {
+    background: color-mix(in srgb, var(--color-on-primary) 15%, transparent);
+    border-color: var(--color-on-primary);
+    color: var(--color-on-primary);
   }
 
   /* Tighter vertical rhythm on the landing page. */
   .compact {
-    padding-block: clamp(2rem, 5vw, 3.25rem);
+    padding-block: clamp(2rem, 5vw, 3.25rem) 0;
   }
 
   .trees {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
-  }
-
-  .trees :global(.art) {
-    aspect-ratio: 16 / 9;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
   }
 
   .services {
@@ -142,10 +231,31 @@ const featured = (await getSpecies(lang)).filter((s) => s.data.featured).slice(0
     margin: 0;
   }
 
+  .gallery-sub {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  .gallery {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  }
+
+  .gallery img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+  }
+
   .family {
     display: grid;
     gap: 2rem;
     align-items: center;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    background: var(--color-surface-alt);
+    border-radius: var(--radius-lg);
   }
 
   @media (min-width: 48rem) {
@@ -164,7 +274,7 @@ const featured = (await getSpecies(lang)).filter((s) => s.data.featured).slice(0
     height: 8.5rem;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid var(--color-bg);
+    border: 4px solid var(--color-surface-alt);
   }
 
   .faces img + img {
@@ -172,18 +282,32 @@ const featured = (await getSpecies(lang)).filter((s) => s.data.featured).slice(0
   }
 
   .family .lead {
+    color: var(--color-ink);
     margin-bottom: 1rem;
   }
 
-  .visit {
+  .compact-cta {
+    padding-top: clamp(2rem, 5vw, 3.25rem);
+  }
+
+  .cta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
+    padding: clamp(1.75rem, 4vw, 2.5rem);
+    background: var(--color-sage-bg);
+    border-radius: var(--radius-lg);
   }
 
-  .visit .lead {
+  .cta h2 {
+    max-width: 34rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .cta p {
     margin: 0;
+    max-width: 38rem;
   }
 </style>

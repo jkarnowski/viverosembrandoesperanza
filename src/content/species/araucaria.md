@@ -5,10 +5,19 @@ family: Araucariaceae
 height: [30, 40]
 growth: slow
 sun: full
-water: medium
-climate: [cold]
+water: low
+climate: [cold, temperate]
 range: { es: Biobío y La Araucanía (Andes y cordillera de Nahuelbuta), en: Biobío and La Araucanía (Andes and Nahuelbuta range) }
 conservation: EN
+leaf: evergreen
+soil: { es: 'Volcánico, bien drenado', en: 'Volcanic, well drained' }
+frost: { es: 'Muy resistente (-20 °C)', en: 'Very hardy (-20 °C)' }
+photo: pinones-araucaria.jpg
+formats:
+  - { name: 'Bolsa 1 L (1 año)', stock: disponible, units: 320 }
+  - { name: 'Maceta 5 L (3 años)', stock: pocas, units: 18 }
+  - { name: 'Maceta 20 L (6 años)', stock: agotado }
+months: [5, 6, 7, 8, 9]
 summary:
   es: Árbol milenario y sagrado, Monumento Natural de Chile.
   en: Ancient, sacred tree and a Natural Monument of Chile.

@@ -1,0 +1,58 @@
+---
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  months: number[];
+  lang: Lang;
+}
+
+const { months, lang } = Astro.props;
+const names = t(lang, 'months.short').split(',');
+---
+
+<ol class="months" aria-label={t(lang, 'species.months')}>
+  {
+    names.map((m, i) => (
+      <li class:list={{ on: months.includes(i + 1) }} data-month={i + 1}>
+        <span>{m}</span>
+        <span class="visually-hidden">{months.includes(i + 1) ? '✓' : '—'}</span>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .months {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    gap: 0.3rem;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--color-muted);
+  }
+
+  li::after {
+    content: '';
+    order: -1;
+    height: 1.4rem;
+    border-radius: 0.35rem;
+    background: var(--color-muted-bg);
+  }
+
+  li.on {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  li.on::after {
+    background: var(--color-primary);
+  }
+</style>

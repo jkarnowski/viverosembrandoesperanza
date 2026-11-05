@@ -1,5 +1,5 @@
 ---
-import { site } from '../data/site';
+import { site, whatsappLink } from '../data/site';
 import { href, t, type Lang } from '../i18n/ui';
 
 interface Props {
@@ -14,24 +14,27 @@ const year = new Date().getFullYear();
   <div class="container cols">
     <div>
       <p class="name">{site.name}</p>
-      <p>{t(lang, 'site.tagline')}</p>
+      <p class="soft">{t(lang, 'footer.about')}</p>
     </div>
     <div>
+      <p class="heading">{t(lang, 'footer.season')}</p>
+      <p class="soft">{t(lang, 'footer.seasonBody')}</p>
       <p class="heading">{t(lang, 'nav.contact')}</p>
-      <p>
+      <p class="soft">
         <a href={`mailto:${site.email}`}>{site.email}</a><br />
-        <a href={`tel:+${site.whatsapp}`}>{site.phone}</a><br />
-        {site.address.city}
+        <a href={`tel:+${site.whatsapp}`}>{site.phone}</a>
       </p>
     </div>
     <div>
       <p class="heading">{t(lang, 'nav.menu')}</p>
-      <p>
+      <p class="soft">
         <a href={href(lang, 'species')}>{t(lang, 'nav.species')}</a><br />
+        <a href={href(lang, 'seasons')}>{t(lang, 'nav.seasons')}</a><br />
         <a href={href(lang, 'services')}>{t(lang, 'nav.services')}</a><br />
         <a href={href(lang, 'about')}>{t(lang, 'nav.about')}</a><br />
         <a href={site.instagram} rel="noopener">Instagram</a>
       </p>
+      <a class="wa" href={whatsappLink(t(lang, 'contact.whatsappMessage'))} rel="noopener">{t(lang, 'contact.whatsapp')}</a>
     </div>
   </div>
   <div class="container legal">
@@ -41,16 +44,10 @@ const year = new Date().getFullYear();
 
 <style>
   .site-footer {
-    margin-top: auto;
-    background: var(--color-primary-strong);
-    color: #e7efe8;
+    margin-top: clamp(2.5rem, 7vw, 4.5rem);
+    background: var(--color-primary);
+    color: var(--color-on-primary);
     padding-block: 3rem 1.5rem;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .site-footer {
-      background: #0e1410;
-    }
   }
 
   .cols {
@@ -61,29 +58,49 @@ const year = new Date().getFullYear();
 
   .name {
     font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
   }
 
   .heading {
     font-weight: 600;
-    color: #fff;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .soft {
+    opacity: 0.85;
+    font-size: 0.95rem;
   }
 
   a {
-    color: #cfe3d3;
+    color: inherit;
   }
 
   a:hover {
-    color: #fff;
+    color: inherit;
+    opacity: 1;
+  }
+
+  .wa {
+    display: inline-flex;
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    background: var(--color-on-primary);
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .wa:hover {
+    color: var(--color-primary-strong);
   }
 
   .legal {
     margin-top: 2rem;
     padding-top: 1.25rem;
-    border-top: 1px solid rgb(255 255 255 / 15%);
-    color: #b9c9bd;
+    border-top: 1px solid color-mix(in srgb, var(--color-on-primary) 20%, transparent);
+    opacity: 0.75;
   }
 </style>

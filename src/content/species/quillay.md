@@ -8,6 +8,13 @@ sun: full
 water: low
 climate: [mediterranean]
 range: { es: Coquimbo a La Araucanía, en: Coquimbo to La Araucanía }
+leaf: evergreen
+soil: { es: 'Bien drenado, tolera suelos secos', en: 'Well drained, tolerates dry soil' }
+frost: { es: 'Moderada (-8 °C)', en: 'Moderate (-8 °C)' }
+photo: quillay-plantulas.jpg
+formats:
+  - { name: 'Bolsa 1 L', stock: disponible, units: 240 }
+months: [4, 5, 6, 7, 8]
 summary:
   es: Árbol siempreverde del bosque esclerófilo, muy resistente a la sequía.
   en: Evergreen tree of the sclerophyllous forest, very drought tolerant.

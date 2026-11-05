@@ -1,0 +1,13 @@
+---
+import { t, type Lang } from '../i18n/ui';
+import type { Stock } from '../lib/species';
+
+interface Props {
+  stock: Stock;
+  lang: Lang;
+}
+
+const { stock, lang } = Astro.props;
+---
+
+<span class={`badge badge--${stock}`}>{t(lang, `stock.${stock}`)}</span>

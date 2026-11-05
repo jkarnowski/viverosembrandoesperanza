@@ -2,12 +2,19 @@
 name: { es: Peumo, en: Peumo }
 scientificName: Cryptocarya alba
 family: Lauraceae
-height: [10, 20]
+height: [15, 20]
 growth: slow
 sun: partial
 water: medium
-climate: [mediterranean]
+climate: [mediterranean, temperate]
 range: { es: Coquimbo a La Araucanía, en: Coquimbo to La Araucanía }
+leaf: evergreen
+soil: { es: 'Profundo, fértil', en: 'Deep, fertile' }
+frost: { es: 'Moderada (-6 °C)', en: 'Moderate (-6 °C)' }
+photo: invernadero-plantula-rojiza.jpg
+formats:
+  - { name: 'Bolsa 1 L', stock: disponible, units: 150 }
+months: [5, 6, 7, 8]
 summary:
   es: Árbol siempreverde aromático de quebradas y laderas de sombra.
   en: Aromatic evergreen tree of ravines and shaded slopes.

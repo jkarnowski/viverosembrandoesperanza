@@ -2,12 +2,20 @@
 name: { es: Avellano chileno, en: Chilean hazel (avellano) }
 scientificName: Gevuina avellana
 family: Proteaceae
-height: [8, 15]
+height: [10, 20]
 growth: medium
 sun: partial
-water: medium
+water: high
 climate: [temperate]
 range: { es: Maule a Aysén, en: Maule to Aysén }
+leaf: evergreen
+soil: { es: 'Húmedo, ácido, volcánico', en: 'Moist, acidic, volcanic' }
+frost: { es: 'Moderada (-10 °C)', en: 'Moderate (-10 °C)' }
+photo: invernadero-plantulas-hojas.jpg
+formats:
+  - { name: 'Bolsa 1 L', stock: disponible, units: 210 }
+  - { name: 'Maceta 5 L', stock: pocas, units: 15 }
+months: [4, 5, 6, 7, 8, 9]
 summary:
   es: Árbol siempreverde de hojas brillantes y frutos comestibles.
   en: Evergreen tree with glossy leaves and edible nuts.

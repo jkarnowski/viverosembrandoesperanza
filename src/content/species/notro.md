@@ -6,8 +6,15 @@ height: [5, 10]
 growth: fast
 sun: full
 water: medium
-climate: [temperate, cold]
+climate: [cold, temperate]
 range: { es: Maule a Magallanes, en: Maule to Magallanes }
+leaf: evergreen
+soil: { es: 'Pobre, volcánico', en: 'Poor, volcanic' }
+frost: { es: 'Resistente (-12 °C)', en: 'Hardy (-12 °C)' }
+photo: notro-en-flor.jpg
+formats:
+  - { name: 'Bolsa 1 L', stock: disponible, units: 190 }
+months: [4, 5, 6, 7, 8, 9]
 summary:
   es: Árbol de flores rojo intenso que atraen al picaflor.
   en: Tree with brilliant red flowers that attract hummingbirds.

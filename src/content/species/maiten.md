@@ -2,12 +2,21 @@
 name: { es: Maitén, en: Maitén }
 scientificName: Maytenus boaria
 family: Celastraceae
-height: [10, 15]
+height: [8, 15]
 growth: medium
 sun: full
 water: low
-climate: [mediterranean, temperate]
+climate: [temperate, mediterranean]
 range: { es: Atacama a Aysén, en: Atacama to Aysén }
+leaf: evergreen
+soil: { es: 'Variado, tolera suelos pobres', en: 'Varied, tolerates poor soil' }
+frost: { es: 'Resistente (-12 °C)', en: 'Hardy (-12 °C)' }
+photo: maiten-arbol.jpg
+photoCredit: 'Foto: Pdassori, Wikimedia Commons (CC BY-SA 4.0)'
+formats:
+  - { name: 'Bolsa 1 L', stock: disponible, units: 380 }
+  - { name: 'Maceta 5 L', stock: disponible, units: 60 }
+months: [4, 5, 6, 7, 8, 9]
 summary:
   es: Árbol elegante de ramas colgantes, muy adaptable.
   en: Graceful tree with weeping branches, highly adaptable.

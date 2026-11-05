@@ -22,18 +22,29 @@ npm run check     # type-checks .astro and .ts files
 | -------------------------------------- | --------------------------------------- |
 | Contact details, WhatsApp, hours       | `src/data/site.ts`                      |
 | Species (one file per species)         | `src/content/species/<slug>.md`         |
+| Stock per pot size, planting months    | `formats:` and `months:` in each species file |
+| Photos                                 | `public/photos/` (set `photo:` in the species file) |
+| Team names, bios, photos               | `src/data/team.ts`, `public/team/`      |
 | "Nosotros" page text                   | `src/content/pages/about.es.md`         |
 | Interface text (buttons, headings)     | `src/i18n/ui.ts`                        |
 | Colours and fonts                      | `src/styles/global.css`                 |
 
-To add a species, copy an existing file in `src/content/species/`, rename it (the file name becomes the URL, e.g. `lingue.md` → `/especies/lingue/`) and edit the fields. `npm run check` reports any missing or misspelled field. Set `available: false` to show "Sin stock por ahora", and `featured: true` to show it on the home page.
+To add a species, copy an existing file in `src/content/species/`, rename it (the file name becomes the URL, e.g. `lingue.md` → `/especies/lingue/`) and edit the fields. `npm run check` reports any missing or misspelled field. Each pot size in `formats:` has a `stock` of `disponible`, `pocas`, `agotado` or `proximamente`; the species badge shows the best one. `months:` lists the months (1–12) shown on the species page and the Temporadas calendar. Set `featured: true` to show a species on the home page (the first three alphabetically are used).
 
 #### Before launch
 
 - [ ] Replace the placeholder contact details in `src/data/site.ts`.
-- [ ] Replace the placeholder story in `src/content/pages/about.es.md`.
 - [ ] Have the nursery review the species list and descriptions.
-- [ ] Add real photos (they will replace the coloured placeholder panels).
+- [ ] Confirm the stock numbers in each species file (they came from the Lovable MVP and may be placeholders).
+- [ ] Replace the Wikimedia photos (roble, maitén, arrayán) with the nursery's own when available.
+
+### Design
+
+Colours, fonts (Urbanist + Epilogue), the photo hero, the Temporadas calendar and the institutional projects section come from the Lovable MVP "Native Tree Finder". The Lovable project is kept as a reference; this repo is the one to keep working on.
+
+### Later
+
+- **Recomendador** ("¿Qué árbol va en mi terreno?" with a photo and location): the Lovable MVP has an AI version, which needs a server. GitHub Pages only serves static files, so for now the button opens WhatsApp. Bringing it back means adding a serverless function (e.g. Netlify or Cloudflare).
 
 ### Project layout
 

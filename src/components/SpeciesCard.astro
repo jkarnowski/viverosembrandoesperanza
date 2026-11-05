@@ -1,7 +1,8 @@
 ---
 import SpeciesArt from './SpeciesArt.astro';
+import StockBadge from './StockBadge.astro';
 import { href, t, type Lang } from '../i18n/ui';
-import { formatHeight, type Species } from '../lib/species';
+import { formatHeight, overallStock, type Species } from '../lib/species';
 
 interface Props {
   species: Species;
@@ -10,22 +11,29 @@ interface Props {
 
 const { species, lang } = Astro.props;
 const { data } = species;
+const meta = [
+  t(lang, `leaf.${data.leaf}`),
+  formatHeight(data.height),
+  `${t(lang, 'species.growth')} ${t(lang, `growth.${data.growth}`).toLowerCase()}`,
+  `${t(lang, 'species.water')} ${t(lang, `water.${data.water}`).toLowerCase()}`,
+];
 ---
 
 <article class="species-card" data-climate={data.climate.join(' ')}>
   <a href={href(lang, 'species', species.id)}>
-    <SpeciesArt color={data.color} label={data.name[lang]} />
+    <div class="media">
+      <SpeciesArt color={data.color} label={`${data.name[lang]} (${data.scientificName})`} photo={data.photo} />
+    </div>
     <div class="body">
-      <h3>{data.name[lang]}</h3>
-      <p class="sci">{data.scientificName}</p>
-      <p class="summary">{data.summary[lang]}</p>
-      <ul class="tags">
-        <li>{formatHeight(data.height)}</li>
-        <li>{t(lang, `sun.${data.sun}`)}</li>
-        <li>{t(lang, 'species.water')}: {t(lang, `water.${data.water}`).toLowerCase()}</li>
-        {data.conservation && <li class="status">{t(lang, `conservation.${data.conservation}`)}</li>}
-        {!data.available && <li class="status">{t(lang, 'species.unavailable')}</li>}
-      </ul>
+      <div class="title-row">
+        <div>
+          <h3>{data.name[lang]}</h3>
+          <p class="sci">{data.scientificName}</p>
+        </div>
+        <StockBadge stock={overallStock(species)} lang={lang} />
+      </div>
+      <p class="meta">{meta.join(' · ')}</p>
+      {data.conservation && <p class="status">{t(lang, `conservation.${data.conservation}`)}</p>}
     </div>
   </a>
 </article>
@@ -33,15 +41,14 @@ const { data } = species;
 <style>
   .species-card {
     background: var(--color-surface);
-    border: 1px solid var(--color-border);
     border-radius: var(--radius);
+    box-shadow: var(--shadow);
     overflow: hidden;
-    transition: transform 0.15s, box-shadow 0.15s;
+    transition: transform 0.2s;
   }
 
   .species-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
+    transform: translateY(-4px);
   }
 
   a {
@@ -52,8 +59,27 @@ const { data } = species;
     text-decoration: none;
   }
 
+  .media {
+    overflow: hidden;
+  }
+
+  .media :global(.art) {
+    transition: transform 0.5s;
+  }
+
+  .species-card:hover .media :global(.art) {
+    transform: scale(1.05);
+  }
+
   .body {
-    padding: 1.1rem 1.25rem 1.3rem;
+    padding: 1.1rem 1.25rem 1.25rem;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
   }
 
   h3 {
@@ -63,33 +89,23 @@ const { data } = species;
   .sci {
     font-style: italic;
     color: var(--color-muted);
-    font-size: 0.95rem;
-    margin-bottom: 0.6rem;
-  }
-
-  .summary {
-    font-size: 0.98rem;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
+    font-size: 0.9rem;
     margin: 0;
-    padding: 0;
-    list-style: none;
-    font-size: 0.8rem;
   }
 
-  .tags li {
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    background: var(--color-surface-alt);
+  .meta {
+    margin: 0.75rem 0 0;
+    font-size: 0.78rem;
     color: var(--color-muted);
   }
 
-  .tags .status {
-    background: color-mix(in srgb, var(--color-accent) 18%, transparent);
-    color: var(--color-ink);
+  .status {
+    display: inline-block;
+    margin: 0.6rem 0 0;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-warning) 25%, transparent);
+    font-size: 0.75rem;
+    font-weight: 600;
   }
 </style>

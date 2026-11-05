@@ -1,5 +1,4 @@
 ---
-import Logo from './Logo.astro';
 import { enabledLangs, href, languages, t, url, type Lang, type Route } from '../i18n/ui';
 
 interface Props {
@@ -13,6 +12,7 @@ const otherLang: Lang = lang === 'es' ? 'en' : 'es';
 
 const nav: { route: Route; label: string }[] = [
   { route: 'species', label: t(lang, 'nav.species') },
+  { route: 'seasons', label: t(lang, 'nav.seasons') },
   { route: 'services', label: t(lang, 'nav.services') },
   { route: 'about', label: t(lang, 'nav.about') },
   { route: 'contact', label: t(lang, 'nav.contact') },
@@ -21,9 +21,9 @@ const nav: { route: Route; label: string }[] = [
 
 <header class="site-header">
   <div class="container bar">
-    <a class="brand" href={href(lang, 'home')}>
-      <Logo />
-      <span>{t(lang, 'site.title')}</span>
+    <a class="brand" href={href(lang, 'home')} aria-label={t(lang, 'site.title')}>
+      <span>Sembrando Esperanza</span>
+      <small>{t(lang, 'site.wordmarkSub')}</small>
     </a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>
@@ -81,18 +81,24 @@ const nav: { route: Route; label: string }[] = [
 
   .brand {
     display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0 0.5rem;
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(0.95rem, 3.6vw, 1.15rem);
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
     line-height: 1.2;
-    color: var(--color-ink);
+    color: var(--color-primary);
     text-decoration: none;
   }
 
-  .brand :global(svg) {
-    flex-shrink: 0;
+  .brand small {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--color-muted);
   }
 
   .menu-toggle {
@@ -111,9 +117,10 @@ const nav: { route: Route; label: string }[] = [
 
   nav a {
     display: block;
-    padding: 0.5rem 0.8rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 999px;
-    color: var(--color-ink);
+    color: color-mix(in srgb, var(--color-ink) 82%, transparent);
+    font-size: 0.92rem;
     font-weight: 500;
     text-decoration: none;
   }
@@ -121,7 +128,7 @@ const nav: { route: Route; label: string }[] = [
   nav a:hover,
   nav a[aria-current='page'] {
     background: var(--color-surface-alt);
-    color: var(--color-primary-strong);
+    color: var(--color-ink);
   }
 
   .lang {
@@ -143,7 +150,7 @@ const nav: { route: Route; label: string }[] = [
 
   /* Narrow screens: once the script has run, the nav collapses behind the toggle.
      Without JavaScript the nav simply wraps below the brand. */
-  @media (max-width: 47.99rem) {
+  @media (max-width: 59.99rem) {
     .site-header.js nav {
       display: none;
       position: absolute;
@@ -176,7 +183,7 @@ const nav: { route: Route; label: string }[] = [
     }
   }
 
-  @media (min-width: 48rem) {
+  @media (min-width: 60rem) {
     .menu-toggle {
       display: none;
     }

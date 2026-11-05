@@ -23,8 +23,26 @@ const species = defineCollection({
     summary: localized,
     description: localized,
     uses: localized,
-    /** Set to false to show "out of stock" without removing the species. */
-    available: z.boolean().default(true),
+    /** Evergreen or deciduous. */
+    leaf: z.enum(['evergreen', 'deciduous']),
+    soil: localized,
+    frost: localized,
+    /** Photo file in public/photos/. The coloured panel is shown when missing. */
+    photo: z.string().optional(),
+    /** Credit line for photos that aren't the nursery's own. */
+    photoCredit: z.string().optional(),
+    /** Pot sizes on offer and their stock. `units` is shown when set. */
+    formats: z
+      .array(
+        z.object({
+          name: z.string(),
+          stock: z.enum(['disponible', 'pocas', 'agotado', 'proximamente']),
+          units: z.number().int().nonnegative().optional(),
+        }),
+      )
+      .min(1),
+    /** Months (1–12) when the species is sold and planted. */
+    months: z.array(z.number().int().min(1).max(12)).min(1),
     /** Shown on the home page when true. */
     featured: z.boolean().default(false),
     /** Card tint, any CSS colour. */

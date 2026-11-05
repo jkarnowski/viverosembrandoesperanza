@@ -3,13 +3,23 @@ import Base from '../layouts/Base.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import { services } from '../data/services';
 import { whatsappLink } from '../data/site';
-import { href, routePath, t, type Lang } from '../i18n/ui';
+import { href, routePath, t, type Lang, type UiKey } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
 }
 
 const { lang } = Astro.props;
+
+// Institutional projects, adapted from the Lovable MVP's "Proyectos institucionales" page.
+const highlights = [1, 2, 3].map((n) => ({
+  title: t(lang, `services.inst.hl${n}.title` as UiKey),
+  body: t(lang, `services.inst.hl${n}.body` as UiKey),
+}));
+const steps = [1, 2, 3, 4, 5].map((n) => ({
+  title: t(lang, `services.steps.s${n}.title` as UiKey),
+  body: t(lang, `services.steps.s${n}.body` as UiKey),
+}));
 ---
 
 <Base
@@ -39,7 +49,46 @@ const { lang } = Astro.props;
     </div>
   </section>
 
-  <section class="section section--alt">
+  <section class="section section--alt" id="proyectos">
+    <div class="container">
+      <p class="eyebrow">{t(lang, 'services.inst.eyebrow')}</p>
+      <h2>{t(lang, 'services.inst.title')}</h2>
+      <p class="lead">{t(lang, 'services.inst.body')}</p>
+
+      <div class="grid highlights">
+        {
+          highlights.map((h) => (
+            <div class="card">
+              <p class="hl-title">{h.title}</p>
+              <p class="hl-body">{h.body}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <h3 class="steps-title">{t(lang, 'services.steps.title')}</h3>
+      <ol class="steps">
+        {
+          steps.map((s, i) => (
+            <li>
+              <p class="step-n">{String(i + 1).padStart(2, '0')}</p>
+              <p class="step-title">{s.title}</p>
+              <p class="step-body">{s.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="button-row inst-cta">
+        <a class="button" href={whatsappLink(t(lang, 'services.inst.ctaMessage'))} rel="noopener">
+          {t(lang, 'services.inst.cta')}
+        </a>
+        <a class="button button--ghost" href={href(lang, 'seasons')}>{t(lang, 'services.inst.seasons')}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container approach">
       <div>
         <h2>{t(lang, 'services.approach.title')}</h2>
@@ -63,6 +112,68 @@ const { lang } = Astro.props;
   .services {
     margin-top: 2.5rem;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  }
+
+  .highlights {
+    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .hl-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .hl-body {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--color-muted);
+  }
+
+  .steps-title {
+    font-size: 1.6rem;
+    margin-top: 3rem;
+  }
+
+  .steps {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+    margin: 1.25rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .steps li {
+    padding: 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+
+  .step-n {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    margin: 0;
+  }
+
+  .step-title {
+    font-weight: 700;
+    margin: 0.4rem 0 0.25rem;
+  }
+
+  .step-body {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+  }
+
+  .inst-cta {
+    margin-top: 2rem;
   }
 
   .approach {

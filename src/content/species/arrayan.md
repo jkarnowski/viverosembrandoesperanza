@@ -8,6 +8,15 @@ sun: partial
 water: high
 climate: [temperate]
 range: { es: Valparaíso a Aysén, en: Valparaíso to Aysén }
+leaf: evergreen
+soil: { es: 'Húmedo, bien drenado', en: 'Moist, well drained' }
+frost: { es: 'Moderada (-8 °C)', en: 'Moderate (-8 °C)' }
+photo: arrayan-arbol.jpg
+photoCredit: 'Foto: Krzysztof Golik, Wikimedia Commons (CC BY-SA 4.0)'
+formats:
+  - { name: 'Bolsa 1 L', stock: pocas, units: 40 }
+  - { name: 'Maceta 5 L', stock: proximamente }
+months: [4, 5, 6, 7, 8, 9]
 summary:
   es: Árbol de corteza color canela, flores blancas y frutos comestibles.
   en: Tree with cinnamon-coloured bark, white flowers and edible berries.
