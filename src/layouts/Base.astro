@@ -1,0 +1,34 @@
+---
+import { languages, t, url, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+}
+
+const { lang, title } = Astro.props;
+const siteTitle = t(lang, 'site.title');
+const otherLang: Lang = lang === 'es' ? 'en' : 'es';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
+    <meta name="description" content={t(lang, 'site.tagline')} />
+    <title>{title ? `${title} · ${siteTitle}` : siteTitle}</title>
+  </head>
+  <body>
+    <header>
+      <a href={url(lang === 'es' ? '' : 'en/')}>{siteTitle}</a>
+      <a href={url(otherLang === 'es' ? '' : 'en/')} hreflang={otherLang}>
+        {languages[otherLang]}
+      </a>
+    </header>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
