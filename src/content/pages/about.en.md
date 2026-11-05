@@ -1,18 +1,18 @@
 ---
 title: About us
-description: Meet Vivero Sembrando Esperanza, a nursery growing native Chilean trees and shrubs.
+description: Vivero Sembrando Esperanza is a family project by Pablo, Jaclyn and their three children, growing native Chilean trees as a legacy for generations to come.
 ---
 
-<!-- TODO: replace with the nursery's real story. -->
+**Vivero Sembrando Esperanza ("Sowing Hope Nursery") is a family project.** We are Pablo and Jaclyn, a married couple with three children, and this nursery is our legacy.
 
-**Vivero Sembrando Esperanza** ("Sowing Hope Nursery") grew out of a wish to give the Chilean landscape back its own trees. We grow native species from seed and cuttings, caring for each plant until it is ready to thrive in its permanent home.
+It all began on the family land just outside Lautaro, where Pablo's father planted more than a thousand trees. Those trees gave the family healthier land, summer shade and a beauty that still fills us with wonder. Today we want to carry that story forward: we grow native trees from seed and care for them until they are ready to thrive in their permanent home.
 
 ## What we do
 
-- We grow native trees and shrubs from central and southern Chile.
-- We advise individuals, schools, local councils and businesses on the right species for each site.
+- We grow native tree seedlings from central and southern Chile, in orders of 500 or more.
 - We supply reforestation and ecological restoration projects.
+- We care for the trees during their first year in the ground, combining our team's work with monitoring technology.
 
 ## Why we do it
 
-Native forests protect water, soil and wildlife. Every native tree planted is a small seed of hope for the land and for those who come after us.
+Native forests protect water, soil and wildlife. A tree planted today will shade our children, and their children after them. That is why every tree we plant is a seed of hope: for the land, for our family and for those who come after us.

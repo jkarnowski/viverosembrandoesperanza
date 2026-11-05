@@ -28,6 +28,7 @@ const { Content } = await render(page);
       <Content />
 
       <h2>{t(lang, 'about.team')}</h2>
+      <p>{t(lang, 'about.teamIntro')}</p>
       <div class="team">
         {team.map((member) => <TeamMember member={member} />)}
       </div>

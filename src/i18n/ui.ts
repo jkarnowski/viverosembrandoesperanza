@@ -28,7 +28,7 @@ export type Route = keyof typeof routes;
 export const ui = {
   es: {
     'site.title': 'Vivero Sembrando Esperanza',
-    'site.tagline': 'Vivero de árboles y arbustos nativos de Chile',
+    'site.tagline': 'Vivero familiar de árboles nativos de Chile',
     'site.description':
       'Vivero de especies nativas de Chile: quillay, peumo, maitén, araucaria, notro y más. Venta de plantines desde 500 unidades y mantención forestal durante el primer año.',
     'nav.home': 'Inicio',
@@ -57,6 +57,11 @@ export const ui = {
     'home.featured.all': 'Ver todas las especies',
     'home.services.title': 'Qué ofrecemos',
     'home.services.more': 'Ver servicios',
+    'home.family.eyebrow': 'Un proyecto familiar',
+    'home.family.title': 'Un legado que se planta',
+    'home.family.body':
+      'Somos Pablo y Jaclyn, un matrimonio con tres hijos. Seguimos el camino que comenzó el padre de Pablo al plantar más de mil árboles en el campo familiar cerca de Lautaro, y sembramos para que nuestros hijos, y los suyos, hereden una tierra más viva.',
+    'home.family.cta': 'Conoce nuestra historia',
     'home.quote.title': '¿Tienes un proyecto de reforestación?',
     'home.quote.body':
       'Cuéntanos qué especies y cuántos plantines necesitas. El pedido mínimo es de 500 plantines.',
@@ -95,7 +100,9 @@ export const ui = {
     'conservation.VU': 'Vulnerable',
     'conservation.EN': 'En peligro',
     'about.title': 'Nosotros',
-    'about.team': 'Equipo',
+    'about.team': 'Una familia que siembra',
+    'about.teamIntro':
+      'Pablo y Jaclyn están casados y tienen tres hijos. Este vivero es su legado familiar: árboles que crecerán junto a sus hijos y seguirán en pie para las generaciones que vienen.',
     'services.title': 'Servicios',
     'services.intro':
       'Producimos plantines de árboles nativos para proyectos de reforestación y te acompañamos durante el primer año para que tus árboles crezcan sanos.',
@@ -131,7 +138,7 @@ export const ui = {
   },
   en: {
     'site.title': 'Vivero Sembrando Esperanza',
-    'site.tagline': 'Native tree and shrub nursery in Chile',
+    'site.tagline': 'Family-run native tree nursery in Chile',
     'site.description':
       'Nursery growing native Chilean species: quillay, peumo, maitén, araucaria, notro and more. Seedlings sold from 500 units, plus forest care during the first year.',
     'nav.home': 'Home',
@@ -160,6 +167,11 @@ export const ui = {
     'home.featured.all': 'See all species',
     'home.services.title': 'What we offer',
     'home.services.more': 'See services',
+    'home.family.eyebrow': 'A family project',
+    'home.family.title': 'A legacy you can plant',
+    'home.family.body':
+      "We are Pablo and Jaclyn, a married couple with three children. We follow the path Pablo's father began when he planted more than a thousand trees on the family land near Lautaro, and we plant so that our children, and theirs, inherit a more living land.",
+    'home.family.cta': 'Read our story',
     'home.quote.title': 'Planning a reforestation project?',
     'home.quote.body':
       'Tell us which species and how many seedlings you need. The minimum order is 500 seedlings.',
@@ -198,7 +210,9 @@ export const ui = {
     'conservation.VU': 'Vulnerable',
     'conservation.EN': 'Endangered',
     'about.title': 'About us',
-    'about.team': 'Team',
+    'about.team': 'A family that plants',
+    'about.teamIntro':
+      'Pablo and Jaclyn are married with three children. This nursery is their family legacy: trees that will grow up alongside their children and still be standing for the generations to come.',
     'services.title': 'Services',
     'services.intro':
       'We grow native tree seedlings for reforestation projects and stay with you through the first year so your trees grow healthy.',
