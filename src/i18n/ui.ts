@@ -53,8 +53,8 @@ export const ui = {
     'home.why.soil.title': 'Suelos sanos',
     'home.why.soil.body':
       'Protegen el suelo de la erosión y ayudan a recuperar quebradas, laderas y riberas.',
-    'home.featured.title': 'Algunas de nuestras especies',
-    'home.featured.all': 'Ver todas las especies',
+    'home.featured.title': 'Nuestros árboles',
+    'home.featured.all': 'Ver todos nuestros árboles',
     'home.services.title': 'Qué ofrecemos',
     'home.services.more': 'Ver servicios',
     'home.family.eyebrow': 'Un proyecto familiar',
@@ -163,8 +163,8 @@ export const ui = {
     'home.why.soil.title': 'Healthy soil',
     'home.why.soil.body':
       'They protect soil from erosion and help restore ravines, hillsides and riverbanks.',
-    'home.featured.title': 'Some of our species',
-    'home.featured.all': 'See all species',
+    'home.featured.title': 'Our trees',
+    'home.featured.all': 'See all our trees',
     'home.services.title': 'What we offer',
     'home.services.more': 'See services',
     'home.family.eyebrow': 'A family project',

@@ -2,6 +2,7 @@
 import { getEntry, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import TeamMember from '../components/TeamMember.astro';
+import WhyNative from '../components/WhyNative.astro';
 import { team } from '../data/team';
 import { href, routePath, t, type Lang } from '../i18n/ui';
 
@@ -26,6 +27,8 @@ const { Content } = await render(page);
     <div class="container prose">
       <h1>{page.data.title}</h1>
       <Content />
+
+      <WhyNative lang={lang} />
 
       <h2>{t(lang, 'about.team')}</h2>
       <p>{t(lang, 'about.teamIntro')}</p>
@@ -58,7 +61,8 @@ const { Content } = await render(page);
     margin-bottom: 0.4rem;
   }
 
-  .prose > h2 {
+  .prose > h2,
+  .prose :global(.why h2) {
     margin-top: 2.5rem;
   }
 
