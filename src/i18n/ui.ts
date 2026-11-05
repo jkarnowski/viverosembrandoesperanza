@@ -91,6 +91,7 @@ export const ui = {
     'conservation.VU': 'Vulnerable',
     'conservation.EN': 'En peligro',
     'about.title': 'Nosotros',
+    'about.team': 'Equipo',
     'contact.title': 'Contacto',
     'contact.intro':
       'Escríbenos para consultar disponibilidad, precios, pedidos para proyectos o para coordinar una visita.',
@@ -172,6 +173,7 @@ export const ui = {
     'conservation.VU': 'Vulnerable',
     'conservation.EN': 'Endangered',
     'about.title': 'About us',
+    'about.team': 'Team',
     'contact.title': 'Contact',
     'contact.intro':
       'Get in touch to ask about availability, prices, orders for projects, or to arrange a visit.',

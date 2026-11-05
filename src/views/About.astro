@@ -1,6 +1,8 @@
 ---
 import { getEntry, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import TeamMember from '../components/TeamMember.astro';
+import { team } from '../data/team';
 import { href, routePath, t, type Lang } from '../i18n/ui';
 
 interface Props {
@@ -24,6 +26,12 @@ const { Content } = await render(page);
     <div class="container prose">
       <h1>{page.data.title}</h1>
       <Content />
+
+      <h2>{t(lang, 'about.team')}</h2>
+      <div class="team">
+        {team.map((member) => <TeamMember member={member} />)}
+      </div>
+
       <p class="button-row">
         <a class="button" href={href(lang, 'species')}>{t(lang, 'home.hero.cta')}</a>
         <a class="button button--ghost" href={href(lang, 'contact')}>{t(lang, 'home.hero.cta2')}</a>
@@ -47,6 +55,15 @@ const { Content } = await render(page);
 
   .prose :global(li) {
     margin-bottom: 0.4rem;
+  }
+
+  .prose > h2 {
+    margin-top: 2.5rem;
+  }
+
+  .team {
+    display: grid;
+    gap: 1rem;
   }
 
   .button-row {

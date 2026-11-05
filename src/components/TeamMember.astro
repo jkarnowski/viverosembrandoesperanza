@@ -1,0 +1,82 @@
+---
+import type { TeamMember } from '../data/team';
+import { url } from '../i18n/ui';
+
+interface Props {
+  member: TeamMember;
+}
+
+const { member } = Astro.props;
+const initials = member.name
+  .split(/\s+/)
+  .map((part) => part[0])
+  .slice(0, 2)
+  .join('');
+---
+
+<article class="member">
+  {
+    member.photo ? (
+      <img class="avatar" src={url(`team/${member.photo}`)} alt={member.name} width="112" height="112" loading="lazy" />
+    ) : (
+      <div class="avatar initials" aria-hidden="true">{initials}</div>
+    )
+  }
+  <div>
+    <h3>{member.name}</h3>
+    <p class="role">{member.role}</p>
+    <p class="bio">{member.bio}</p>
+  </div>
+</article>
+
+<style>
+  .member {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .avatar {
+    flex-shrink: 0;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .initials {
+    display: grid;
+    place-items: center;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  h3 {
+    margin-bottom: 0.15rem;
+  }
+
+  .role {
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .bio {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 30rem) {
+    .member {
+      flex-direction: column;
+    }
+  }
+</style>
