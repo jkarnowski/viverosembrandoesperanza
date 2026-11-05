@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, whatsappLink } from '../data/site';
+import { routePath, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<Base
+  lang={lang}
+  title={t(lang, 'contact.title')}
+  description={t(lang, 'contact.intro')}
+  route="contact"
+  alternates={{ es: routePath('es', 'contact'), en: routePath('en', 'contact') }}
+>
+  <section class="section">
+    <div class="container">
+      <h1>{t(lang, 'contact.title')}</h1>
+      <p class="lead">{t(lang, 'contact.intro')}</p>
+      <p>
+        <a class="button" href={whatsappLink(t(lang, 'contact.whatsappMessage'))} rel="noopener">
+          {t(lang, 'contact.whatsapp')}
+        </a>
+      </p>
+
+      <div class="grid details">
+        <div class="card">
+          <h2>{t(lang, 'contact.email')}</h2>
+          <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+          <h2>{t(lang, 'contact.phone')}</h2>
+          <p><a href={`tel:+${site.whatsapp}`}>{site.phone}</a></p>
+        </div>
+        <div class="card">
+          <h2>{t(lang, 'contact.address')}</h2>
+          <address>
+            {site.address.street}<br />
+            {site.address.city}<br />
+            {site.address.country}
+          </address>
+          <p><a href={site.mapUrl} rel="noopener">{t(lang, 'contact.map')} →</a></p>
+        </div>
+        <div class="card">
+          <h2>{t(lang, 'contact.hours')}</h2>
+          <ul>
+            {site.hours[lang].map((line) => <li>{line}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .details {
+    margin-top: 2.5rem;
+  }
+
+  h2 {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 0.35rem;
+  }
+
+  .card p,
+  address {
+    margin-bottom: 1.25rem;
+    font-style: normal;
+  }
+
+  .card > :last-child {
+    margin-bottom: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>

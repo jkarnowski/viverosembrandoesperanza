@@ -1,0 +1,55 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { href, routePath, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const page = await getEntry('pages', `about.${lang}`);
+if (!page) throw new Error(`Missing src/content/pages/about.${lang}.md`);
+const { Content } = await render(page);
+---
+
+<Base
+  lang={lang}
+  title={page.data.title}
+  description={page.data.description}
+  route="about"
+  alternates={{ es: routePath('es', 'about'), en: routePath('en', 'about') }}
+>
+  <section class="section">
+    <div class="container prose">
+      <h1>{page.data.title}</h1>
+      <Content />
+      <p class="button-row">
+        <a class="button" href={href(lang, 'species')}>{t(lang, 'home.hero.cta')}</a>
+        <a class="button button--ghost" href={href(lang, 'contact')}>{t(lang, 'home.hero.cta2')}</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .prose {
+    max-width: calc(44rem + 2 * var(--gutter));
+  }
+
+  .prose :global(h2) {
+    margin-top: 2rem;
+  }
+
+  .prose :global(ul) {
+    padding-left: 1.25rem;
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.4rem;
+  }
+
+  .button-row {
+    margin-top: 2.5rem;
+  }
+</style>

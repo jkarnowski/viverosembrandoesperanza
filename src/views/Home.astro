@@ -1,0 +1,132 @@
+---
+import Base from '../layouts/Base.astro';
+import SpeciesCard from '../components/SpeciesCard.astro';
+import { site, whatsappLink } from '../data/site';
+import { href, routePath, t, type Lang } from '../i18n/ui';
+import { getSpecies } from '../lib/species';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const featured = (await getSpecies(lang)).filter((s) => s.data.featured).slice(0, 6);
+
+const reasons = [
+  { title: t(lang, 'home.why.water.title'), body: t(lang, 'home.why.water.body'), icon: 'M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11Z' },
+  { title: t(lang, 'home.why.wildlife.title'), body: t(lang, 'home.why.wildlife.body'), icon: 'M4 14c4-1 6-4 7-8 1 4 3 7 9 8-6 1-8 3-9 6-1-3-3-5-7-6Z' },
+  { title: t(lang, 'home.why.soil.title'), body: t(lang, 'home.why.soil.body'), icon: 'M3 18h18M6 18c0-4 2.5-7 6-7s6 3 6 7M12 11V4m0 3c-2 0-3.5-1.3-3.5-3.2 2 0 3.5 1.3 3.5 3.2Z' },
+];
+---
+
+<Base lang={lang} alternates={{ es: routePath('es', 'home'), en: routePath('en', 'home') }}>
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="eyebrow">{t(lang, 'site.tagline')}</p>
+      <h1>{t(lang, 'home.hero.title')}</h1>
+      <p class="lead">{t(lang, 'home.hero.body')}</p>
+      <div class="button-row">
+        <a class="button" href={href(lang, 'species')}>{t(lang, 'home.hero.cta')}</a>
+        <a class="button button--ghost" href={href(lang, 'contact')}>{t(lang, 'home.hero.cta2')}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h2>{t(lang, 'home.why.title')}</h2>
+      <div class="grid reasons">
+        {
+          reasons.map((r) => (
+            <div class="card">
+              <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+                <path d={r.icon} fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <h3>{r.title}</h3>
+              <p>{r.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>{t(lang, 'home.featured.title')}</h2>
+        <a href={href(lang, 'species')}>{t(lang, 'home.featured.all')} →</a>
+      </div>
+      <div class="grid">
+        {featured.map((species) => <SpeciesCard species={species} lang={lang} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container visit">
+      <div>
+        <h2>{t(lang, 'home.visit.title')}</h2>
+        <p class="lead">{t(lang, 'home.visit.body')}</p>
+      </div>
+      <div class="button-row">
+        <a class="button" href={whatsappLink(t(lang, 'contact.whatsappMessage'))} rel="noopener">
+          {t(lang, 'contact.whatsapp')}
+        </a>
+        <a class="button button--ghost" href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-block: clamp(4rem, 12vw, 8rem);
+    background:
+      radial-gradient(60rem 30rem at 85% 0%, color-mix(in srgb, var(--color-primary) 16%, transparent), transparent 70%),
+      radial-gradient(40rem 24rem at 0% 100%, color-mix(in srgb, var(--color-accent) 14%, transparent), transparent 70%);
+  }
+
+  .hero-inner > * {
+    max-width: 46rem;
+  }
+
+  .hero .lead {
+    margin-bottom: 2rem;
+  }
+
+  .reasons svg {
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .reasons p {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-head h2 {
+    margin: 0;
+  }
+
+  .visit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .visit .lead {
+    margin: 0;
+  }
+</style>

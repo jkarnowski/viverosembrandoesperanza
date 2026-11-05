@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import { href, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<Base lang={lang} title={t(lang, 'notFound.title')} alternates={{ es: '', en: 'en/' }} noindex>
+  <section class="section">
+    <div class="container">
+      <h1>{t(lang, 'notFound.title')}</h1>
+      <p class="lead">{t(lang, 'notFound.body')}</p>
+      <p><a class="button" href={href(lang, 'home')}>{t(lang, 'notFound.back')}</a></p>
+    </div>
+  </section>
+</Base>

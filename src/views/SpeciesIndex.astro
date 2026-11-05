@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+import SpeciesCard from '../components/SpeciesCard.astro';
+import { routePath, t, type Lang } from '../i18n/ui';
+import { getSpecies } from '../lib/species';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const species = await getSpecies(lang);
+const filters = ['low', 'medium', 'high'] as const;
+---
+
+<Base
+  lang={lang}
+  title={t(lang, 'species.title')}
+  description={t(lang, 'species.intro')}
+  route="species"
+  alternates={{ es: routePath('es', 'species'), en: routePath('en', 'species') }}
+>
+  <section class="section">
+    <div class="container">
+      <h1>{t(lang, 'species.title')}</h1>
+      <p class="lead">{t(lang, 'species.intro')}</p>
+
+      <div class="filters" role="group" aria-label={t(lang, 'species.filter.label')} hidden>
+        <span class="filter-label">{t(lang, 'species.filter.label')}:</span>
+        <button type="button" data-filter="all" aria-pressed="true">{t(lang, 'species.filter.all')}</button>
+        {
+          filters.map((f) => (
+            <button type="button" data-filter={f} aria-pressed="false">
+              {t(lang, `water.${f}`)}
+            </button>
+          ))
+        }
+        <span class="count" aria-live="polite"><span data-count>{species.length}</span> {t(lang, 'species.count')}</span>
+      </div>
+
+      <div class="grid" data-species-grid>
+        {species.map((s) => <SpeciesCard species={s} lang={lang} />)}
+      </div>
+      <p class="empty" data-empty hidden>{t(lang, 'species.empty')}</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Shown by the script; stays hidden without JavaScript. */
+  .filters:not([hidden]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2rem 0 1.5rem;
+  }
+
+  [data-species-grid] {
+    margin-top: 2rem;
+  }
+
+  .filter-label {
+    font-weight: 600;
+    margin-right: 0.25rem;
+  }
+
+  button {
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+
+  button[aria-pressed='true'] {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  .count {
+    margin-left: auto;
+    color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+
+  .empty {
+    color: var(--color-muted);
+  }
+</style>
+
+<script>
+  const filters = document.querySelector<HTMLElement>('.filters');
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-species-grid] .species-card')];
+  const count = document.querySelector('[data-count]');
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+
+  if (filters) {
+    filters.hidden = false;
+    const buttons = [...filters.querySelectorAll<HTMLButtonElement>('button[data-filter]')];
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        const value = button.dataset.filter;
+        for (const b of buttons) b.setAttribute('aria-pressed', String(b === button));
+        let shown = 0;
+        for (const card of cards) {
+          const match = value === 'all' || card.dataset.water === value;
+          card.hidden = !match;
+          if (match) shown++;
+        }
+        if (count) count.textContent = String(shown);
+        if (empty) empty.hidden = shown > 0;
+      });
+    }
+  }
+</script>

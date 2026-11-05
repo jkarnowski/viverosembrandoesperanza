@@ -1,0 +1,14 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import SpeciesDetail from '../../views/SpeciesDetail.astro';
+
+export const getStaticPaths = (async () => {
+  const species = await getCollection('species');
+  return species.map((s) => ({ params: { slug: s.id }, props: { species: s } }));
+}) satisfies GetStaticPaths;
+
+const { species } = Astro.props;
+---
+
+<SpeciesDetail lang="es" species={species} />

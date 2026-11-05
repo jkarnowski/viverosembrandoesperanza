@@ -1,0 +1,154 @@
+---
+import Base from '../layouts/Base.astro';
+import SpeciesArt from '../components/SpeciesArt.astro';
+import { whatsappLink } from '../data/site';
+import { href, routePath, t, type Lang } from '../i18n/ui';
+import { formatHeight, type Species } from '../lib/species';
+
+interface Props {
+  lang: Lang;
+  species: Species;
+}
+
+const { lang, species } = Astro.props;
+const { data } = species;
+const name = data.name[lang];
+
+const facts = [
+  { label: t(lang, 'species.family'), value: data.family },
+  { label: t(lang, 'species.height'), value: formatHeight(data.height) },
+  { label: t(lang, 'species.growth'), value: t(lang, `growth.${data.growth}`) },
+  { label: t(lang, 'species.sun'), value: t(lang, `sun.${data.sun}`) },
+  { label: t(lang, 'species.water'), value: t(lang, `water.${data.water}`) },
+  { label: t(lang, 'species.range'), value: data.range[lang] },
+  ...(data.conservation
+    ? [{ label: t(lang, 'species.conservation'), value: t(lang, `conservation.${data.conservation}`) }]
+    : []),
+];
+---
+
+<Base
+  lang={lang}
+  title={`${name} (${data.scientificName})`}
+  description={data.summary[lang]}
+  route="species"
+  alternates={{
+    es: routePath('es', 'species', species.id),
+    en: routePath('en', 'species', species.id),
+  }}
+>
+  <article class="section">
+    <div class="container">
+      <p><a href={href(lang, 'species')}>← {t(lang, 'species.back')}</a></p>
+      <div class="layout">
+        <SpeciesArt color={data.color} label={name} class="photo" />
+        <div>
+          <h1>{name}</h1>
+          <p class="sci">{data.scientificName}</p>
+          <p class="lead">{data.description[lang]}</p>
+
+          <h2>{t(lang, 'species.uses')}</h2>
+          <p>{data.uses[lang]}</p>
+
+          <dl class="facts">
+            {
+              facts.map((f) => (
+                <div>
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+
+          {
+            data.available ? (
+              <a
+                class="button"
+                href={whatsappLink(`${t(lang, 'species.askMessage')} ${name} (${data.scientificName}).`)}
+                rel="noopener"
+              >
+                {t(lang, 'species.ask')}
+              </a>
+            ) : (
+              <p class="unavailable">{t(lang, 'species.unavailable')}</p>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .layout {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 56rem) {
+    .layout {
+      grid-template-columns: 5fr 6fr;
+      align-items: start;
+    }
+
+    .layout :global(.photo) {
+      position: sticky;
+      top: 6rem;
+    }
+  }
+
+  .layout :global(.photo) {
+    border-radius: var(--radius);
+    aspect-ratio: 4 / 3;
+  }
+
+  h1 {
+    margin-bottom: 0.15rem;
+  }
+
+  .sci {
+    font-style: italic;
+    color: var(--color-muted);
+    font-size: 1.15rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+    gap: 1px;
+    margin: 2rem 0;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .facts div {
+    background: var(--color-surface);
+    padding: 0.85rem 1rem;
+  }
+
+  dt {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  dd {
+    margin: 0.15rem 0 0;
+  }
+
+  .unavailable {
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+</style>
