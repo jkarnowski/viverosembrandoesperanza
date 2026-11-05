@@ -19,8 +19,7 @@ export const team: TeamMember[] = [
   {
     name: 'Jaclyn Karnowski',
     role: 'Cofundadora y socia directora',
-    // TODO: replace with Jaclyn's bio.
-    bio: 'Biografía pendiente.',
+    bio: 'Nacida en Michigan y amante de la naturaleza, Jaclyn recorrió como mochilera Torres del Paine, Cochamó y Pucón, y se enamoró de los paisajes del sur de Chile y de su biodiversidad única. Fue profesora de matemáticas y trabajó en startups tecnológicas. Hoy pone todo lo aprendido al servicio del ciclo de vida de los árboles: recolectar sus semillas, verlas germinar y acompañarlas hasta que echan raíces en su nuevo hogar.',
     photo: 'jaclyn-karnowski.jpg',
   },
 ];
