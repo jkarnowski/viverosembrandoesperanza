@@ -21,5 +21,6 @@ export const team: TeamMember[] = [
     role: 'Cofundadora y socia directora',
     // TODO: replace with Jaclyn's bio.
     bio: 'Biografía pendiente.',
+    photo: 'jaclyn-karnowski.jpg',
   },
 ];
