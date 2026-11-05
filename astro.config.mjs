@@ -1,12 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// GitHub Pages project site: https://jkarnowski.github.io/viverosembrandoesperanza/
-// If a custom domain is added later, set `site` to it, remove `base`,
-// and add public/CNAME with the domain.
+// Served from the custom domain via GitHub Pages. The domain itself is set in
+// the repo's Settings → Pages (a CNAME file is ignored by Actions deploys).
 export default defineConfig({
-  site: 'https://jkarnowski.github.io',
-  base: '/viverosembrandoesperanza',
+  site: 'https://viverosembrandoesperanza.cl',
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],
